@@ -1,0 +1,26 @@
+.loading-spinner {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    padding: 18px 0;
+}
+
+.loading-spinner__circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 3px solid rgba(118, 75, 162, 0.2);
+    border-top-color: #764ba2;
+    animation: spinner-rotate 0.9s linear infinite;
+}
+
+.loading-spinner__label {
+    color: #655f86;
+    font-weight: 600;
+}
+
+@keyframes spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}

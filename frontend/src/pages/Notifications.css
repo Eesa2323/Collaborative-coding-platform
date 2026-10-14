@@ -1,0 +1,326 @@
+.page-notifications {
+    --nt-bg-start: #1f2937;
+    --nt-bg-end: #111827;
+    --nt-surface: #ffffff;
+    --nt-surface-border: rgba(59, 130, 246, 0.2);
+    --nt-text-primary: #0f172a;
+    --nt-text-muted: #475569;
+    --nt-accent: #2563eb;
+    --nt-shadow: 0 24px 52px rgba(15, 23, 42, 0.3);
+
+    min-height: 100vh;
+    padding: 0 20px 32px;
+    background:
+        radial-gradient(circle at 14% 8%, rgba(56, 189, 248, 0.15), transparent 45%),
+        linear-gradient(145deg, var(--nt-bg-start) 0%, var(--nt-bg-end) 100%);
+}
+
+.notifications-main {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    padding-top: 108px;
+}
+
+.notifications-card {
+    border-radius: 22px;
+    background: var(--nt-surface);
+    border: 1px solid var(--nt-surface-border);
+    box-shadow: var(--nt-shadow);
+    color: var(--nt-text-primary);
+    padding: 26px;
+}
+
+.notifications-eyebrow {
+    display: inline-flex;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1e3a8a;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.notifications-card h1 {
+    margin: 12px 0 18px;
+    font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+}
+
+.notifications-error,
+.notifications-empty {
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+}
+
+.notifications-error {
+    border: 1px solid rgba(185, 28, 28, 0.25);
+    background: #fef2f2;
+}
+
+.notifications-error h2 {
+    margin: 0;
+    color: #991b1b;
+}
+
+.notifications-error p {
+    margin: 8px 0 0;
+    color: #7f1d1d;
+}
+
+.notifications-empty {
+    border: 1px dashed rgba(37, 99, 235, 0.35);
+    background: #f8fbff;
+}
+
+.notifications-empty-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+}
+
+.notifications-empty-icon svg {
+    width: 34px;
+    height: 34px;
+    fill: #ffffff;
+}
+
+.notifications-empty h2 {
+    margin: 0;
+    color: var(--nt-text-primary);
+}
+
+.notifications-empty p {
+    margin: 8px 0 0;
+    color: var(--nt-text-muted);
+}
+
+.notifications-list {
+    display: grid;
+    gap: 12px;
+}
+
+.notification-item {
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    background: #f8fafc;
+    padding: 14px;
+}
+
+.notification-item-clickable {
+    cursor: pointer;
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        border-color 160ms ease;
+}
+
+.notification-item-clickable:hover,
+.notification-item-clickable:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(37, 99, 235, 0.55);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.14);
+    outline: none;
+}
+
+.notification-item-unread {
+    border-color: rgba(37, 99, 235, 0.38);
+    background: #eff6ff;
+}
+
+.notification-item header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.notification-item h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.notification-item header span {
+    color: #475569;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.notification-item p {
+    margin: 8px 0;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.notification-type {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: #e2e8f0;
+    color: #334155;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.notification-invite-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-top: 10px;
+    color: #475569;
+    font-size: 0.88rem;
+}
+
+.notification-invite-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notifications-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.invite-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.invite-details-lead {
+    margin: 0;
+    color: #334155;
+    line-height: 1.65;
+}
+
+.invite-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+}
+
+.invite-details-grid div,
+.invite-details-grid__full {
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.invite-details-grid__full {
+    grid-column: 1 / -1;
+}
+
+.invite-details-grid dt {
+    margin: 0 0 6px;
+    color: #64748b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.invite-details-grid dd {
+    margin: 0;
+    color: #0f172a;
+    line-height: 1.5;
+}
+
+.invite-response-error {
+    margin: 0;
+    color: #b91c1c;
+    background: #fef2f2;
+    border: 1px solid rgba(185, 28, 28, 0.2);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.invite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.invite-button {
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 160ms ease,
+        opacity 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.invite-button:hover:not(:disabled),
+.invite-button:focus-visible:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.14);
+    outline: none;
+}
+
+.invite-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.invite-button-secondary {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.invite-button-decline {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.invite-button-accept {
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+}
+
+@media (max-width: 640px) {
+    .page-notifications {
+        padding-inline: 14px;
+    }
+
+    .notifications-main {
+        padding-top: 94px;
+    }
+
+    .notifications-card {
+        padding: 18px;
+    }
+
+    .notification-item header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .invite-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .invite-details-grid__full {
+        grid-column: auto;
+    }
+
+    .invite-actions {
+        flex-direction: column-reverse;
+    }
+
+    .invite-button {
+        width: 100%;
+    }
+}

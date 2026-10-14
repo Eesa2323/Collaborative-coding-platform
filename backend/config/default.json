@@ -1,0 +1,8 @@
+{
+    "mongodbURI": "mongodb+srv://eesa:sQIezHpHRTGNytUw@cluster0.mujkuqk.mongodb.net/",
+    "jwtAccessSecret": "change_this_access_secret_in_env",
+    "jwtRefreshSecret": "change_this_refresh_secret_in_env",
+    "accessTokenTtl": "15m",
+    "refreshTokenTtl": "7d",
+    "corsOrigin": "http://localhost:3000"
+}
