@@ -3,15 +3,16 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const config = require("config")
 const User = require("../models/User")
+const { getJwtAccessSecret, getJwtRefreshSecret } = require("../config/env")
 
 const router = express.Router()
 
 // Cookie name for refresh token.
 const REFRESH_COOKIE_NAME = "codecraft_refresh"
 
-// Secrets and token lifetimes (env first, config fallback).
-const accessTokenSecret = process.env.JWT_ACCESS_SECRET || config.get("jwtAccessSecret")
-const refreshTokenSecret = process.env.JWT_REFRESH_SECRET || config.get("jwtRefreshSecret")
+// Secrets are required from the environment; token lifetimes have safe defaults.
+const accessTokenSecret = getJwtAccessSecret()
+const refreshTokenSecret = getJwtRefreshSecret()
 const accessTokenTtl = process.env.JWT_ACCESS_TTL || config.get("accessTokenTtl")
 const refreshTokenTtl = process.env.JWT_REFRESH_TTL || config.get("refreshTokenTtl")
 

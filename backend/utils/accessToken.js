@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
-const config = require("config")
+const { getJwtAccessSecret } = require("../config/env")
 
-const getAccessTokenSecret = () => process.env.JWT_ACCESS_SECRET || config.get("jwtAccessSecret")
+const getAccessTokenSecret = () => getJwtAccessSecret()
 
 const verifyAccessToken = (token) => jwt.verify(token, getAccessTokenSecret())
 

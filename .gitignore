@@ -1,0 +1,10 @@
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Test coverage reports
+backend/coverage/
+frontend/coverage/

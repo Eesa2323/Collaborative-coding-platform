@@ -18,6 +18,7 @@ const Collaboration = require("./models/Collaboration")
 const User = require("./models/User")
 const requireAuth = require("./middleware/auth")
 const { verifyAccessToken } = require("./utils/accessToken")
+const { getMongoDbUri } = require("./config/env")
 const {
     SUPPORTED_LANGUAGES,
     MAX_CODE_LENGTH,
@@ -33,7 +34,7 @@ const corsOrigin = process.env.CORS_ORIGIN || config.get("corsOrigin")
 const collaborationRoomState = new Map()
 
 // MongoDB Connection
-const mongodbURI = config.get("mongodbURI")
+const mongodbURI = getMongoDbUri()
 
 const normalizeCodeByLanguage = (value) => {
     if (!value || typeof value !== "object") {

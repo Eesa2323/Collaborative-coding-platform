@@ -2,11 +2,12 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const config = require("config")
 const User = require("../models/User")
+const { getJwtAccessSecret, getJwtRefreshSecret } = require("../config/env")
 
 class AuthService {
     constructor() {
-        this.accessTokenSecret = process.env.JWT_ACCESS_SECRET || config.get("jwtAccessSecret")
-        this.refreshTokenSecret = process.env.JWT_REFRESH_SECRET || config.get("jwtRefreshSecret")
+        this.accessTokenSecret = getJwtAccessSecret()
+        this.refreshTokenSecret = getJwtRefreshSecret()
         this.accessTokenTtl = process.env.JWT_ACCESS_TTL || config.get("accessTokenTtl")
         this.refreshTokenTtl = process.env.JWT_REFRESH_TTL || config.get("refreshTokenTtl")
     }
