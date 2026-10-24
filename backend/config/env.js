@@ -1,8 +1,9 @@
 const requiredEnv = (name) => {
     const value = process.env[name]?.trim()
 
-    if (!value) {
-        throw new Error(`Missing required environment variable: ${name}`)
+    if (!value || value.includes("<") || value.includes("replace-with")) {
+        console.error(`\nPlease add your own ${name} to backend/.env. See .env.example and README for guidance.\n`)
+        process.exit(1)
     }
 
     return value

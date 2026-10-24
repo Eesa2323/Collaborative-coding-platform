@@ -1,8 +1,24 @@
+const fs = require("fs")
+const path = require("path")
+const envPath = path.join(__dirname, ".env")
+if (fs.existsSync(envPath)) {
+    fs.readFileSync(envPath, "utf8")
+        .split(/\r?\n/)
+        .forEach((line) => {
+            const match = line.match(/^\s*([^#=]+)=(.*)$/)
+            if (match) {
+                const key = match[1].trim()
+                const value = match[2].trim()
+                if (key && process.env[key] === undefined) {
+                    process.env[key] = value
+                }
+            }
+        })
+}
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-const path = require("path")
 const mongoose = require("mongoose")
 const config = require("config")
 const { createServer } = require("http")
