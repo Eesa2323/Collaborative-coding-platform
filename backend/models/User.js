@@ -30,13 +30,21 @@ const userSchema = new mongoose.Schema(
             default: "",
         },
 
-        // Tracks solved challenges so we can mark cards as completed in the UI.
-        completedChallenges: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Challenge",
-            },
-        ],
+// Tracks solved challenges so we can mark cards as completed in the UI.
+    completedChallenges: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Challenge",
+        },
+    ],
+
+    // Recent profile searches (last 16)
+    recentHistory: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
     },
     {
         timestamps: true,

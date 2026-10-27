@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
+import { useParams } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import Modal from "../components/Modal"
 import LoadingSpinner from "../components/LoadingSpinner"
 import "./Profile.css"
@@ -22,7 +22,8 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const DEFAULT_TOPICS = ["DSA", "AI", "Web Dev", "Game Dev"]
 
 export default function Profile() {
-    const { user, authAxios, updateUser } = useAuth()
+    const { userId } = useParams()
+    const { user, authAxios, updateUser, logout } = useAuth()
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -42,6 +43,7 @@ export default function Profile() {
     })
     const [passwordError, setPasswordError] = useState("")
     const [passwordLoading, setPasswordLoading] = useState(false)
+    const [isLoggingOut, setIsLoggingOut] = useState(false)
 
     const completedChallenges = profile?.completedChallenges || []
     const totalChallenges = completedChallenges.length
@@ -55,7 +57,10 @@ export default function Profile() {
         try {
             setLoading(true)
             setError("")
-            const response = await authAxios.get("/api/users/me", {
+            const endpoint = userId
+                ? `/api/users/${userId}`
+                : "/api/users/me"
+            const response = await authAxios.get(endpoint, {
                 withCredentials: true,
             })
 
@@ -99,9 +104,14 @@ export default function Profile() {
             .sort((a, b) => b.count - a.count)
     }, [topicCounts])
 
-    const activeTopics = topicStats.length
-    const level = Math.floor(totalChallenges / 5) + 1
-    const nextMilestoneCount = level * 5 - totalChallenges
+    const activeTopics = topicStats?.length ?? 0
+
+    const isOwnProfile = !userId || userId === user?.id
+    const level = profile?.level || 1
+    const uniqueCompletedCount = profile?.completedChallengeCount ?? new Set(
+        completedChallenges.map((challenge) => challenge.id),
+    ).size
+    const nextMilestoneCount = 4 - (uniqueCompletedCount % 4)
     const topTopic = topicStats[0]?.topic || "Not started yet"
 
     const getJoinDate = () => {
@@ -203,13 +213,18 @@ export default function Profile() {
             label: "Current level",
             value: `Level ${level}`,
         },
-        {
-            label: "Next milestone",
-            value: `${nextMilestoneCount} challenge${nextMilestoneCount === 1 ? "" : "s"}`,
-        },
     ]
 
     const recentChallenges = completedChallenges.slice(-6).reverse()
+
+    const handleLogout = async () => {
+        setIsLoggingOut(true)
+        try {
+            await logout()
+        } finally {
+            setIsLoggingOut(false)
+        }
+    }
 
     const handleProfileUpdate = async (event) => {
         event.preventDefault()
@@ -296,7 +311,6 @@ export default function Profile() {
             <div className='page-profile'>
                 <Navbar />
                 <LoadingSpinner />
-                <Footer />
             </div>
         )
     }
@@ -338,12 +352,23 @@ export default function Profile() {
                             </div>
                         </div>
                     </div>
-                    <button
-                        className='profile-settings-btn'
-                        onClick={() => setShowSettingsModal(true)}
-                    >
-                        ⚙️ Settings
-                    </button>
+                    {isOwnProfile && (
+                        <button
+                            className='profile-settings-btn'
+                            onClick={() => setShowSettingsModal(true)}
+                        >
+                            ⚙️ Settings
+                        </button>
+                    )}
+                    {isOwnProfile && (
+                        <button
+                            className='profile-settings-btn'
+                            onClick={handleLogout}
+                            disabled={isLoggingOut}
+                        >
+                            {isLoggingOut ? "Logging out..." : "Log Out"}
+                        </button>
+                    )}
                 </div>
 
                 <div className='profile-section summary-grid'>
@@ -588,7 +613,8 @@ export default function Profile() {
                 </Modal>
             )}
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
+
+

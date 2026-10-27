@@ -69,13 +69,16 @@
 
 @media (max-width: 640px) {
     .modal-overlay {
-        padding: 8px;
+        padding: 0;
+        align-items: stretch;
+        justify-content: stretch;
     }
 
     .modal-dialog {
         width: 100%;
-        max-height: calc(100vh - 16px);
-        border-radius: 16px;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
     }
 
     .modal-header,
@@ -87,5 +90,6 @@
     .modal-body {
         padding-top: 14px;
         padding-bottom: 16px;
+        flex: 1 1 auto;
     }
 }

@@ -21,7 +21,7 @@ function ProtectedRoute() {
 
     // Show a small loader only while we do the first restore check.
     if (status === "unknown") {
-        return <LoadingSpinner label='Checking login...' />
+        return <LoadingSpinner />
     }
 
     // If not logged in, send user to login page.

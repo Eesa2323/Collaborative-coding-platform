@@ -43,7 +43,7 @@ const upload = multer({
 })
 
 // Normalize community data for consistent API responses
-const normalizeCommunityResponse = (community, memberCount = 0, postCount = 0) => ({
+const normalizeCommunityResponse = (community, memberCount = 0, postCount = 0, currentUserId = null) => ({
     id: String(community._id),
     title: String(community.title || ""),
     description: String(community.description || ""),
@@ -53,6 +53,9 @@ const normalizeCommunityResponse = (community, memberCount = 0, postCount = 0) =
     },
     memberCount,
     postCount,
+    isMember: currentUserId
+        ? (community.members || []).some((m) => String(m) === String(currentUserId))
+        : false,
     createdAt: community.createdAt?.toISOString() || null,
 })
 
@@ -78,6 +81,7 @@ router.get("/", async (req, res) => {
             .sort({ createdAt: -1 })
             .lean()
 
+        const currentUserId = String(req.user?.userId || "").trim()
         // Enrich each community with member count and post count
         const communityData = await Promise.all(
             communities.map(async (community) => {
@@ -85,7 +89,7 @@ router.get("/", async (req, res) => {
                 const postCount = await CommunityPost.countDocuments({
                     community: community._id,
                 })
-                return normalizeCommunityResponse(community, memberCount, postCount)
+                return normalizeCommunityResponse(community, memberCount, postCount, currentUserId)
             }),
         )
 
@@ -110,6 +114,8 @@ router.get("/search", async (req, res) => {
             return res.status(200).json({ communities: [] })
         }
 
+        const currentUserId = String(req.user?.userId || "").trim()
+
         // Case-insensitive search on title and description fields
         const searchRegex = { $regex: query, $options: "i" }
         const communities = await Community.find({
@@ -126,7 +132,7 @@ router.get("/search", async (req, res) => {
                 const postCount = await CommunityPost.countDocuments({
                     community: community._id,
                 })
-                return normalizeCommunityResponse(community, memberCount, postCount)
+                return normalizeCommunityResponse(community, memberCount, postCount, currentUserId)
             }),
         )
 

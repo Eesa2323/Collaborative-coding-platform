@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import SearchAndTopicModal from "../components/SearchAndTopicModal"
 import LoadingSpinner from "../components/LoadingSpinner"
 import { useAuth } from "../context/AuthContext"
@@ -10,7 +9,7 @@ import "./Collaborate.css"
 function Collaborate() {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [activeTab, setActiveTab] = useState("start")
+    const [activeTab, setActiveTab] = useState("active")
     const [successMessage, setSuccessMessage] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
     const [collaborations, setCollaborations] = useState([])
@@ -109,6 +108,17 @@ function Collaborate() {
                 collaboration,
             },
         })
+    }
+
+    if (isLoadingCollaborations && collaborations.length === 0) {
+        return (
+            <div className='page page-collaborate'>
+                <Navbar />
+                <main className='collaborate-main'>
+                    <LoadingSpinner label='Loading active collaborations...' />
+                </main>
+            </div>
+        )
     }
 
     const formatDateTime = (value) => {
@@ -313,9 +323,10 @@ function Collaborate() {
                 />
             ) : null}
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
 
 export default Collaborate
+
+

@@ -3,7 +3,6 @@ import { io } from "socket.io-client"
 import { useLocation, useNavigate } from "react-router-dom"
 import * as monaco from "monaco-editor"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import Modal from "../components/Modal"
 import { useAuth } from "../context/AuthContext"
 import "./SolvePage.css"
@@ -796,9 +795,10 @@ export function SolvePage() {
                 </Modal>
             ) : null}
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
 
 export default SolvePage
+
+

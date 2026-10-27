@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { LEARN_LESSONS } from "../data/learnLessons"
 import "./Learn.css"
@@ -208,9 +207,10 @@ const Learn = () => {
                     </section>
                 </div>
             </main>
-            <Footer />
-        </div>
+                    </div>
     )
 }
 
 export default Learn
+
+

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import LoadingSpinner from "../components/LoadingSpinner"
 import "./CommunityDetail.css"
 
@@ -159,8 +158,7 @@ export default function CommunityDetail() {
             <div className='page-community-detail'>
                 <Navbar />
                 <LoadingSpinner />
-                <Footer />
-            </div>
+                            </div>
         )
     }
 
@@ -177,8 +175,7 @@ export default function CommunityDetail() {
                         ← Back to Communities
                     </button>
                 </div>
-                <Footer />
-            </div>
+                            </div>
         )
     }
 
@@ -340,7 +337,8 @@ export default function CommunityDetail() {
                 </div>
             </div>
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
+
+

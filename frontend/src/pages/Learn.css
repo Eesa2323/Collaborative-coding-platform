@@ -5,6 +5,8 @@
         radial-gradient(circle at top right, rgba(162, 117, 255, 0.16), transparent 30%),
         linear-gradient(180deg, #f8f3ff 0%, #ffffff 56%, #fdfbff 100%);
     color: #2d174b;
+    padding-bottom: var(--footer-height);
+    box-sizing: border-box;
 }
 
 .learn-main {

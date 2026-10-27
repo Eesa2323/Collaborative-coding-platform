@@ -12,6 +12,7 @@ import Notifications from "./pages/Notifications"
 import { AuthProvider } from "./context/AuthContext"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Profile from "./pages/Profile"
+import Search from "./pages/Search"
 import Communities from "./pages/Communities"
 import CommunityDetail from "./pages/CommunityDetail"
 
@@ -34,6 +35,10 @@ function App() {
                         <Route
                             path='/signup'
                             element={<Signup />}
+                        />
+                        <Route
+                            path='/search'
+                            element={<Search />}
                         />
                         <Route
                             path='/learn'
@@ -60,6 +65,10 @@ function App() {
                             />
                             <Route
                                 path='/profile'
+                                element={<Profile />}
+                            />
+                            <Route
+                                path='/profile/:userId'
                                 element={<Profile />}
                             />
                             <Route

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import Modal from "../components/Modal"
 import LoadingSpinner from "../components/LoadingSpinner"
 import "./Communities.css"
@@ -167,8 +166,9 @@ export default function Communities() {
         return (
             <div className='page-communities'>
                 <Navbar />
-                <LoadingSpinner />
-                <Footer />
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '120px' }}>
+                    <LoadingSpinner />
+                </div>
             </div>
         )
     }
@@ -182,7 +182,7 @@ export default function Communities() {
                 {error && <div className='page-error-message'>{error}</div>}
                 {successMessage && <div className='page-success-message'>{successMessage}</div>}
 
-                <div className='communities-header'>
+                <div className='communities-header' style={{ marginTop: '80px' }}>
                     <h1>Community</h1>
                     <p>Connect, collaborate, and learn together</p>
                 </div>
@@ -357,6 +357,35 @@ export default function Communities() {
                                     </div>
                                 )}
 
+                                {!searchLoading && !searchQuery && communities.length > 0 && (
+                                    <div className='search-results'>
+                                        {communities.slice(0, 5).map((community) => (
+                                            <div
+                                                key={community.id}
+                                                className='search-result-item'
+                                            >
+                                                <div>
+                                                    <h4>{community.title}</h4>
+                                                    <p>{community.description}</p>
+                                                    <span className='result-meta'>
+                                                        {community.memberCount} members •{" "}
+                                                        {community.postCount} posts
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    className='btn-primary'
+                                                    onClick={() => {
+                                                        setShowSearchModal(false)
+                                                        handleJoinAndNavigate(community.id)
+                                                    }}
+                                                >
+                                                    {community.isMember ? "Enter" : "Join"}
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
                                 {!searchLoading && searchResults.length > 0 && (
                                     <div className='search-results'>
                                         {searchResults.map((community) => (
@@ -379,7 +408,7 @@ export default function Communities() {
                                                         handleJoinAndNavigate(community.id)
                                                     }}
                                                 >
-                                                    Join
+                                                    {community.isMember ? "Enter" : "Join"}
                                                 </button>
                                             </div>
                                         ))}
@@ -401,7 +430,8 @@ export default function Communities() {
                 </>
             )}
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
+
+

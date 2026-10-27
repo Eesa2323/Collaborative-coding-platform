@@ -78,6 +78,7 @@ function Navbar() {
                     className='navbar-links'
                     aria-label='Primary navigation'
                 >
+                    <Link to='/search'>Search</Link>
                     <Link to='/learn'>Learn</Link>
                     <Link to='/challenges'>Challenges</Link>
                     <Link to='/collaborate'>Collaborate</Link>
@@ -111,19 +112,14 @@ function Navbar() {
                                 ) : null}
                             </Link>
                             <Link
-                                to='/profile'
+                                to={user?.id ? `/profile/${user.id}` : "/profile"}
                                 className='nav-user-name'
                             >
+                                <span className='nav-user-avatar'>
+                                    {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+                                </span>
                                 {userDisplayName}
                             </Link>
-                            <button
-                                type='button'
-                                className='nav-link nav-action-button nav-logout-button'
-                                onClick={handleLogout}
-                                disabled={isLoggingOut}
-                            >
-                                {isLoggingOut ? "Logging out..." : "Log Out"}
-                            </button>
                         </>
                     ) : null}
                     {!isAuthenticated ? (
@@ -155,6 +151,12 @@ function Navbar() {
                     {/* Mobile navigation drawer */}
                     {/* Mobile menu uses the same navigation targets as desktop. */}
                     <Link
+                        to='/search'
+                        onClick={closeMenu}
+                    >
+                        Search
+                    </Link>
+                    <Link
                         to='/#features'
                         onClick={closeMenu}
                     >
@@ -182,25 +184,8 @@ function Navbar() {
                         <Link
                             to='/notifications'
                             onClick={closeMenu}
-                            className='nav-notification-link'
-                            aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ""}`}
                         >
-                            <span
-                                className='nav-notification-icon'
-                                aria-hidden='true'
-                            >
-                                <svg
-                                    viewBox='0 0 24 24'
-                                    role='img'
-                                    focusable='false'
-                                >
-                                    <path d='M12 2a7 7 0 0 0-7 7v3.59L3.29 14.3A1 1 0 0 0 4 16h16a1 1 0 0 0 .71-1.7L19 12.59V9a7 7 0 0 0-7-7zm0 20a3 3 0 0 0 2.83-2H9.17A3 3 0 0 0 12 22z' />
-                                </svg>
-                            </span>
-                            <span>Notifications</span>
-                            {unreadCount > 0 ? (
-                                <span className='nav-notification-badge'>{unreadCount}</span>
-                            ) : null}
+                            Notifications
                         </Link>
                     ) : null}
                     <Link
@@ -210,46 +195,26 @@ function Navbar() {
                         Community
                     </Link>
                     {isAuthenticated ? (
-                        <>
-                            <Link
-                                to='/notifications'
-                                onClick={closeMenu}
-                                className='nav-notification-link'
-                                aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ""}`}
-                                title='Notifications'
-                            >
-                                <span
-                                    className='nav-notification-icon'
-                                    aria-hidden='true'
-                                >
-                                    <svg
-                                        viewBox='0 0 24 24'
-                                        role='img'
-                                        focusable='false'
-                                    >
-                                        <path d='M12 2a7 7 0 0 0-7 7v3.59L3.29 14.3A1 1 0 0 0 4 16h16a1 1 0 0 0 .71-1.7L19 12.59V9a7 7 0 0 0-7-7zm0 20a3 3 0 0 0 2.83-2H9.17A3 3 0 0 0 12 22z' />
-                                    </svg>
-                                </span>
-                                {unreadCount > 0 ? (
-                                    <span className='nav-notification-badge'>{unreadCount}</span>
-                                ) : null}
-                            </Link>
-                            <Link
-                                to='/profile'
-                                onClick={closeMenu}
-                                className='nav-user-name'
-                            >
-                                {userDisplayName}
-                            </Link>
-                            <button
-                                type='button'
-                                className='nav-link nav-action-button nav-logout-button'
-                                onClick={handleLogout}
-                                disabled={isLoggingOut}
-                            >
-                                {isLoggingOut ? "Logging out..." : "Log Out"}
-                            </button>
-                        </>
+                        <Link
+                            to='/notifications'
+                            onClick={closeMenu}
+                        >
+                            Notifications
+                        </Link>
+                    ) : null}
+                    <Link
+                        to='/communities'
+                        onClick={closeMenu}
+                    >
+                        Community
+                    </Link>
+                    {isAuthenticated ? (
+                        <Link
+                            to={user?.id ? `/profile/${user.id}` : "/profile"}
+                            onClick={closeMenu}
+                        >
+                            {userDisplayName}
+                        </Link>
                     ) : (
                         <Link
                             to='/login'

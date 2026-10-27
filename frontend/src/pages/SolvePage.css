@@ -13,6 +13,8 @@
 
     min-height: 100vh;
     padding: 0 20px 32px;
+    padding-bottom: var(--footer-height);
+    box-sizing: border-box;
     background:
         radial-gradient(circle at 10% 5%, rgba(255, 255, 255, 0.12), transparent 42%),
         linear-gradient(145deg, var(--solve-bg-start) 0%, var(--solve-bg-end) 100%);

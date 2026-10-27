@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import LoadingSpinner from "../components/LoadingSpinner"
 import Modal from "../components/Modal"
 import { useAuth } from "../context/AuthContext"
@@ -362,9 +361,10 @@ function Notifications() {
                 </Modal>
             ) : null}
 
-            <Footer />
-        </div>
+                    </div>
     )
 }
 
 export default Notifications
+
+

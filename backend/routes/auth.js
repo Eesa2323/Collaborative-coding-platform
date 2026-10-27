@@ -82,6 +82,18 @@ router.post("/signup", async (req, res) => {
             })
         }
 
+        if (String(name).trim().length > 30) {
+            return res.status(400).json({
+                message: "Name must be 30 characters or less.",
+            })
+        }
+
+        if (String(email).trim().length > 60) {
+            return res.status(400).json({
+                message: "Email must be 60 characters or less.",
+            })
+        }
+
         if (String(password).length < 6) {
             return res.status(400).json({
                 message: "Password must be at least 6 characters.",

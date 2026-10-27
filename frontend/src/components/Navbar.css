@@ -208,3 +208,30 @@
         display: flex;
     }
 }
+
+.nav-user-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 8px;
+}
+
+@media (max-width: 860px) {
+    .navbar-mobile-menu a {
+        font-size: 1.1rem;
+        padding: 10px 12px;
+        border-radius: 8px;
+        transition: background 0.15s ease;
+    }
+    .navbar-mobile-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+    }
+}

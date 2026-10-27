@@ -30,6 +30,7 @@ const collaborationsRouter = require("./routes/collaborations")
 const notificationsRouter = require("./routes/notifications")
 const authRouter = require("./routes/auth")
 const communitiesRouter = require("./routes/communities")
+const publicRouter = require("./routes/public")
 const Collaboration = require("./models/Collaboration")
 const User = require("./models/User")
 const requireAuth = require("./middleware/auth")
@@ -481,10 +482,18 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 app.use("/api/auth", authRouter)
 app.use("/api/challenges", requireAuth, challengesRouter)
 app.use("/api/execute", requireAuth, executeRouter)
-app.use("/api/users", requireAuth, usersRouter)
+// Leaderboard is shown on the public home page, so skip the auth check for it.
+app.use(
+    "/api/users",
+    (req, res, next) => (req.method === "GET" && req.path === "/leaderboard" ? next() : requireAuth(req, res, next)),
+    usersRouter,
+)
 app.use("/api/collaborations", requireAuth, collaborationsRouter)
 app.use("/api/notifications", requireAuth, notificationsRouter)
 app.use("/api/communities", requireAuth, communitiesRouter)
+
+// Public routes
+app.use("/api/public", publicRouter)
 // Global error middleware
 app.use((error, req, res, next) => {
     console.error("[GlobalError]", {

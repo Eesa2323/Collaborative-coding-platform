@@ -3,6 +3,8 @@
     flex-direction: column;
     min-height: 100vh;
     background-color: #f8f6ff;
+    padding-bottom: var(--footer-height);
+    box-sizing: border-box;
 }
 
 .communities-container {
@@ -301,6 +303,8 @@
     border-radius: 10px;
     font-size: 15px;
     font-family: inherit;
+    color: #111827;
+    background: #fff;
 }
 
 .search-input-group input:focus {

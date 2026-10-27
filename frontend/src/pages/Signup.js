@@ -71,6 +71,7 @@ function Signup() {
                             id='name'
                             type='text'
                             name='name'
+                            maxLength={30}
                             value={formData.name}
                             onChange={handleChange}
                             required
@@ -82,6 +83,7 @@ function Signup() {
                             id='email'
                             type='email'
                             name='email'
+                            maxLength={60}
                             value={formData.email}
                             onChange={handleChange}
                             required
@@ -129,3 +131,5 @@ function Signup() {
 }
 
 export default Signup
+
+

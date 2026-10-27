@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import LoadingSpinner from "../components/LoadingSpinner"
 import { useAuth } from "../context/AuthContext"
 import "./Challenges.css"
@@ -64,6 +63,17 @@ function Challenges() {
                 challenge,
             },
         })
+    }
+
+    if (isLoading && challenges.length === 0) {
+        return (
+            <div className='page page-challenges'>
+                <Navbar />
+                <main className='challenges-main'>
+                    <LoadingSpinner />
+                </main>
+            </div>
+        )
     }
 
     return (
@@ -182,10 +192,10 @@ function Challenges() {
                 </section>
             </main>
 
-            {/* Site footer */}
-            <Footer />
-        </div>
+                    </div>
     )
 }
 
 export default Challenges
+
+

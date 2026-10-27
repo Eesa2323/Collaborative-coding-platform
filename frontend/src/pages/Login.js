@@ -35,6 +35,9 @@ function Login() {
 
     return (
         <div className='page'>
+            <div style={{ background: '#000000', border: '2px solid #000000', padding: '20px 16px', borderRadius: '8px', margin: '16px auto', maxWidth: '400px', textAlign: 'center', fontWeight: 600, color: '#ef4444', fontSize: '1.1rem' }}>
+                For testing purposes, when logging in use: email: "brad@gmail.com" password: "Password12345!" OR create an actual account if preferred
+            </div>
             <div className='form-container'>
                 <span className='title'>Log In</span>
                 <span className='subtitle'>Enter your details to continue your journey!</span>
@@ -82,3 +85,5 @@ function Login() {
 }
 
 export default Login
+
+

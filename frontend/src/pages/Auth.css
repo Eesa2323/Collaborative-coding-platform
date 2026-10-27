@@ -109,3 +109,13 @@
 .form-container a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 640px) {
+    .page {
+        padding: 40px 16px;
+    }
+
+    .form-container {
+        padding: 24px 16px;
+    }
+}
