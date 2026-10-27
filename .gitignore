@@ -4,6 +4,11 @@ backend/.env.*
 frontend/.env
 frontend/.env.*
 !frontend/.env.example
+node_modules/
+**/node_modules/
+backend/node_modules/
+frontend/node_modules/
+
 
 # Test coverage reports
 backend/coverage/
