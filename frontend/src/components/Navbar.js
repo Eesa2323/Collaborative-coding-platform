@@ -196,20 +196,6 @@ function Navbar() {
                     </Link>
                     {isAuthenticated ? (
                         <Link
-                            to='/notifications'
-                            onClick={closeMenu}
-                        >
-                            Notifications
-                        </Link>
-                    ) : null}
-                    <Link
-                        to='/communities'
-                        onClick={closeMenu}
-                    >
-                        Community
-                    </Link>
-                    {isAuthenticated ? (
-                        <Link
                             to={user?.id ? `/profile/${user.id}` : "/profile"}
                             onClick={closeMenu}
                         >
