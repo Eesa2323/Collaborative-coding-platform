@@ -21,7 +21,11 @@ function ProtectedRoute() {
 
     // Show a small loader only while we do the first restore check.
     if (status === "unknown") {
-        return <LoadingSpinner />
+        return (
+            <div style={{ background: '#6366f1', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <LoadingSpinner />
+            </div>
+        )
     }
 
     // If not logged in, send user to login page.
