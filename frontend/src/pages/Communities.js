@@ -253,7 +253,7 @@ export default function Communities() {
                                     className='community-enter-btn'
                                     onClick={() => handleJoinAndNavigate(community.id)}
                                 >
-                                    Enter Community
+                                    {community.isMember ? "Enter" : "Join"}
                                 </button>
                             </div>
                         ))}
