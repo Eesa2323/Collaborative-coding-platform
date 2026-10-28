@@ -19,8 +19,8 @@ const refreshTokenTtl = process.env.JWT_REFRESH_TTL || config.get("refreshTokenT
 // Cookie settings for refresh token.
 const getRefreshCookieOptions = () => ({
     httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+    secure: true,
     path: "/",
     maxAge: 1000 * 60 * 60 * 24 * 7,
 })
