@@ -110,6 +110,8 @@ const io = new Server(httpServer, {
     cors: {
         origin: corsOrigin,
         credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization", "x-auth-token", "X-Auth-Token"],
     },
 })
 
@@ -476,6 +478,8 @@ app.use(
     cors({
         origin: corsOrigin,
         credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization", "x-auth-token", "X-Auth-Token"],
     }),
 )
 app.use(bodyParser.json())
