@@ -48,3 +48,4 @@ function Modal({ title, children, onClose, bodyClassName = "" }) {
 }
 
 export default Modal
+

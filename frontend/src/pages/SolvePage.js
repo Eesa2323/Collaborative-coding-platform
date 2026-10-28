@@ -7,7 +7,7 @@ import Modal from "../components/Modal"
 import { useAuth } from "../context/AuthContext"
 import "./SolvePage.css"
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://collaborative-coding-platform-pvdr.onrender.com"
 
 // These are the language choices shown in the dropdown.
 const LANGUAGE_OPTIONS = [
@@ -800,5 +800,6 @@ export function SolvePage() {
 }
 
 export default SolvePage
+
 
 

@@ -75,3 +75,4 @@ test("saving profile details keeps the level returned by the profile API", async
     expect(screen.getByText("4 challenges")).toBeInTheDocument()
 })
 
+

@@ -249,7 +249,7 @@ export default function CommunityDetail() {
 
                                         {post.imageUrl && (
                                             <img
-                                                src={`http://localhost:5000${post.imageUrl}`}
+                                                src={`${process.env.REACT_APP_BACKEND_URL || "https://collaborative-coding-platform-pvdr.onrender.com"}${post.imageUrl}`}
                                                 alt='Post'
                                                 className='post-image'
                                             />
@@ -340,5 +340,6 @@ export default function CommunityDetail() {
                     </div>
     )
 }
+
 
 

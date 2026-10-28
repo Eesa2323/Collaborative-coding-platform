@@ -5,7 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner"
 import { useAuth } from "../context/AuthContext"
 import "./Search.css"
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://collaborative-coding-platform-pvdr.onrender.com"
 
 function Search() {
     const { status, user, authAxios } = useAuth()
@@ -179,4 +179,5 @@ function Search() {
 }
 
 export default Search
+
 

@@ -12,7 +12,7 @@ import axios from "axios"
 const AuthContext = createContext(null)
 
 // Base URL for backend requests.
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://collaborative-coding-platform-pvdr.onrender.com"
 
 export function AuthProvider({ children }) {
     // status: unknown (needs one restore check), authenticated, or guest.
@@ -264,3 +264,4 @@ export function useAuth() {
 
     return contextValue
 }
+
