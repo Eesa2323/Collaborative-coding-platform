@@ -15,13 +15,27 @@ const AuthContext = createContext(null)
 const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || "https://collaborative-coding-platform-pvdr.onrender.com"
 
 export function AuthProvider({ children }) {
+    const STORAGE_KEY = "codecraft_auth"
+    const readStoredAuth = () => {
+        try {
+            const raw = window.localStorage.getItem(STORAGE_KEY)
+            if (!raw) return null
+            const parsed = JSON.parse(raw)
+            if (!parsed?.user || !parsed?.accessToken) return null
+            return parsed
+        } catch {
+            return null
+        }
+    }
+    const storedAuth = readStoredAuth()
+
     // status: unknown (needs one restore check), authenticated, or guest.
-    const [status, setStatus] = useState("unknown")
-    const [user, setUser] = useState(null)
-    const [accessToken, setAccessToken] = useState("")
+    const [status, setStatus] = useState(storedAuth ? "authenticated" : "unknown")
+    const [user, setUser] = useState(storedAuth?.user || null)
+    const [accessToken, setAccessToken] = useState(storedAuth?.accessToken || "")
 
     // We also keep token in a ref so interceptors always read latest value.
-    const tokenRef = useRef("")
+    const tokenRef = useRef(storedAuth?.accessToken || "")
 
     // Promise ref prevents duplicate refresh calls at the same time.
     const refreshPromiseRef = useRef(null)
@@ -53,6 +67,14 @@ export function AuthProvider({ children }) {
         setAccessToken(nextAccessToken)
         setStatus("authenticated")
         tokenRef.current = nextAccessToken
+        try {
+            window.localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify({ user: nextUser, accessToken: nextAccessToken }),
+            )
+        } catch {
+            // ignore
+        }
     }, [])
 
     // Clear auth state in one place.
@@ -61,6 +83,11 @@ export function AuthProvider({ children }) {
         setAccessToken("")
         setStatus("guest")
         tokenRef.current = ""
+        try {
+            window.localStorage.removeItem(STORAGE_KEY)
+        } catch {
+            // ignore
+        }
     }, [])
 
     // Silent refresh. This is used after reload to restore login from refresh cookie.
@@ -76,6 +103,7 @@ export function AuthProvider({ children }) {
                 {},
                 {
                     withCredentials: true,
+                    timeout: 2000,
                 },
             )
             .then((response) => {
@@ -160,8 +188,10 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         // Rehydrate auth once on app load so public pages can reflect login state too.
-        refreshSession()
-    }, [refreshSession])
+        if (status === "unknown") {
+            refreshSession()
+        }
+    }, [refreshSession, status])
 
     // Login helper used by Login page.
     const login = useCallback(

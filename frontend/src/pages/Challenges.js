@@ -159,6 +159,9 @@ function Challenges() {
                                     </div>
                                     <h3>{challenge.title}</h3>
                                     <p>{challenge.challengeContent}</p>
+                                    <p style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.85rem', margin: '4px 0' }}>
+                                        Important tip: ensure you print the result to score the question.
+                                    </p>
                                     <span className='challenge-result-cta'>
                                         Solve this challenge
                                     </span>
