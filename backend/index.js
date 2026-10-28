@@ -51,7 +51,7 @@ const corsOrigin = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
     : [
           "http://localhost:3000",
-          "https://collaborative-coding-platform-pi.vercel.app/",
+          "https://collaborative-coding-platform-pi.vercel.app",
           "https://collaborative-coding-platform-pvdr.onrender.com",
       ]
 const collaborationRoomState = new Map()
