@@ -308,8 +308,7 @@ export default function Profile() {
 
     if (loading) {
         return (
-            <div className='page-profile'>
-                <Navbar />
+            <div style={{ background: '#6366f1', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <LoadingSpinner />
             </div>
         )
