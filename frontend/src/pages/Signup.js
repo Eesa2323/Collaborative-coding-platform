@@ -46,7 +46,7 @@ function Signup() {
                 password: formData.password,
             })
 
-            navigate("/challenges")
+            navigate("/")
         } catch (error) {
             // Show backend message when available.
             const message =

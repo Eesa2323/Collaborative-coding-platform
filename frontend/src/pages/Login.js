@@ -21,7 +21,7 @@ function Login() {
 
             // Log in user and then send them to challenges.
             await login({ email, password })
-            navigate("/challenges")
+            navigate("/")
         } catch (error) {
             // Show friendly message from backend if available.
             const message =
