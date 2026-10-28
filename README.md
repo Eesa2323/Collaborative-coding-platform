@@ -134,11 +134,12 @@ npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000). The frontend uses
-`http://localhost:5000` as its default API and Socket.IO URL. To point it at a
-different backend, set `REACT_APP_API_BASE_URL` before starting or building:
+`https://collaborative-coding-platform-pvdr.onrender.com` as its default API and
+Socket.IO URL. To point it at a different backend, set `REACT_APP_BACKEND_URL`
+before starting or building:
 
 ```powershell
-$env:REACT_APP_API_BASE_URL = "http://localhost:5000"
+$env:REACT_APP_BACKEND_URL = "http://localhost:5000"
 npm start
 ```
 

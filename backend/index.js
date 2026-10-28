@@ -47,7 +47,9 @@ const {
 const app = express()
 const httpServer = createServer(app)
 const PORT = process.env.PORT || 5000
-const corsOrigin = process.env.CORS_ORIGIN || config.get("corsOrigin")
+const corsOrigin = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
+    : ["http://localhost:3000", "https://collaborative-coding-platform-pvdr.onrender.com"]
 const collaborationRoomState = new Map()
 
 // MongoDB Connection
