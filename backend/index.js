@@ -49,7 +49,11 @@ const httpServer = createServer(app)
 const PORT = process.env.PORT || 5000
 const corsOrigin = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim())
-    : ["http://localhost:3000", "https://collaborative-coding-platform-pvdr.onrender.com"]
+    : [
+          "http://localhost:3000",
+          "https://collaborative-coding-platform-pi.vercel.app/",
+          "https://collaborative-coding-platform-pvdr.onrender.com",
+      ]
 const collaborationRoomState = new Map()
 
 // MongoDB Connection
@@ -487,7 +491,8 @@ app.use("/api/execute", requireAuth, executeRouter)
 // Leaderboard is shown on the public home page, so skip the auth check for it.
 app.use(
     "/api/users",
-    (req, res, next) => (req.method === "GET" && req.path === "/leaderboard" ? next() : requireAuth(req, res, next)),
+    (req, res, next) =>
+        req.method === "GET" && req.path === "/leaderboard" ? next() : requireAuth(req, res, next),
     usersRouter,
 )
 app.use("/api/collaborations", requireAuth, collaborationsRouter)
