@@ -658,6 +658,9 @@ export function SolvePage() {
                             </div>
                             <h1>{challenge.title}</h1>
                             <p>{challenge.challengeContent}</p>
+                            <p style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.9rem', margin: '8px 0' }}>
+                                Important tip: ensure you print the result to score the question.
+                            </p>
 
                             {collaboration ? (
                                 <div className='solve-collaboration-banner'>
