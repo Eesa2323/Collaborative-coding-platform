@@ -488,6 +488,11 @@ app.use(cookieParser())
 // Serve static files for uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
+// Test API ROUTE
+app.get("/", (req, res) => {
+    res.status(200).send("Backend is alive!")
+})
+
 // API routes
 app.use("/api/auth", authRouter)
 app.use("/api/challenges", requireAuth, challengesRouter)
