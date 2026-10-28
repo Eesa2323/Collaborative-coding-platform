@@ -192,7 +192,7 @@ router.post("/invite", async (req, res) => {
         })
 
         return res.status(201).json({
-            message: "Collaboration invite sent.",
+            message: "Collaboration invite sent. User must accept from their notifications.",
             collaboration: {
                 id: String(collaboration._id),
                 topic: collaboration.topic,
