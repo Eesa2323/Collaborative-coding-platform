@@ -89,6 +89,7 @@ align-items: stretch;
 
 .search-result-item {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 16px;
     padding: 16px;
