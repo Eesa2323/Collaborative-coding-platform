@@ -141,11 +141,13 @@ function Search() {
                         <p className='search-status'>No users found matching "{query}"</p>
                     )}
 
-                    {!query.trim() && recentLoading && (
+{!query.trim() && recentLoading && (
                         <div className='search-status'>
                             <LoadingSpinner />
                         </div>
                     )}
+
+                    {!query.trim() && !recentLoading && recentSearches.length > 0 && (
                         <div className='search-recent'>
                             <h3>Recent searches</h3>
                         </div>
