@@ -325,9 +325,8 @@
 
 .search-result-item {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
+    flex-direction: column;
+    gap: 12px;
     padding: 16px;
     background: #f9fafb;
     border-radius: 10px;
@@ -356,6 +355,8 @@
 .search-result-item .btn-primary {
     white-space: nowrap;
     padding: 8px 16px;
+    width: auto;
+    align-self: flex-start;
 }
 
 @media (max-width: 768px) {
