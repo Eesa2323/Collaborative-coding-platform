@@ -321,8 +321,6 @@
 .search-results {
     display: grid;
     gap: 12px;
-    max-height: 400px;
-    overflow-y: auto;
 }
 
 .search-result-item {

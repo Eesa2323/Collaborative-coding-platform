@@ -115,7 +115,7 @@ function Collaborate() {
             <div className='page page-collaborate'>
                 <Navbar />
                 <main className='collaborate-main'>
-                    <LoadingSpinner label='Loading active collaborations...' />
+                    <LoadingSpinner />
                 </main>
             </div>
         )
@@ -172,7 +172,7 @@ function Collaborate() {
                         </div>
 
                         {isLoadingCollaborations ? (
-                            <LoadingSpinner label='Loading active collaborations...' />
+                            <LoadingSpinner />
                         ) : null}
 
                         {!isLoadingCollaborations && collaborationsError ? (
