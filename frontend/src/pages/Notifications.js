@@ -175,7 +175,7 @@ function Notifications() {
                     <span className='notifications-eyebrow'>Inbox</span>
                     <h1>Notifications</h1>
 
-                    {isLoading ? <LoadingSpinner label='Loading notifications...' /> : null}
+                    {isLoading ? <LoadingSpinner /> : null}
 
                     {!isLoading && errorMessage ? (
                         <div className='notifications-error'>

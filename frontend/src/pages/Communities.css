@@ -290,6 +290,7 @@
 /* Search Modal */
 .search-modal {
     min-width: 400px;
+    padding: 0;
 }
 
 .search-input-group {
@@ -359,6 +360,37 @@
     padding: 8px 16px;
     width: auto;
     align-self: flex-start;
+}
+
+@media (min-width: 769px) {
+    .search-modal {
+        width: 100%;
+        height: min(440px, 60vh);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .search-modal .search-input-group,
+    .search-modal .modal-actions {
+        flex-shrink: 0;
+    }
+
+    .search-modal .search-results {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        align-content: start;
+    }
+
+    .search-modal .search-result-item {
+        width: 100%;
+    }
+
+    .search-modal > .loading-spinner,
+    .search-modal .search-no-results {
+        flex: 1 1 auto;
+    }
 }
 
 @media (max-width: 768px) {
