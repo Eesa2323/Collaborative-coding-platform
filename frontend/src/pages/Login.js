@@ -34,7 +34,7 @@ function Login() {
     }
 
     return (
-        <div className='page'>
+        <div className='page auth-page'>
             <aside className='login-demo-panel' aria-labelledby='login-demo-title'>
                 <h2 id='login-demo-title'>Testing the app</h2>
                 <p className='login-demo-intro'>

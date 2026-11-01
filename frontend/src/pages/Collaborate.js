@@ -9,7 +9,7 @@ import "./Collaborate.css"
 function Collaborate() {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [activeTab, setActiveTab] = useState("active")
+    const [activeTab, setActiveTab] = useState("start")
     const [successMessage, setSuccessMessage] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
     const [collaborations, setCollaborations] = useState([])
@@ -81,7 +81,7 @@ function Collaborate() {
                 const partnerName = response.data?.collaboration?.collaborator?.name
                 setSuccessMessage(
                     `Invitation sent${partnerName ? ` to ${partnerName}` : ""}. Topic: ${topic}. ` +
-                        "The collaboration will begin once the recipient accepts your invitation.",
+                        "The recipient can accept your invitation from their notifications. The collaboration will begin once they accept.",
                 )
 
                 loadActiveCollaborations()
@@ -230,14 +230,23 @@ function Collaborate() {
                             they accept, you can collaborate in a shared session.
                         </p>
 
-                        <button
-                            type='button'
-                            className='collaborate-primary-button'
-                            onClick={() => setIsModalOpen(true)}
-                            disabled={isLoadingCollaborations}
-                        >
-                            Collaborate
-                        </button>
+                        <div className='collaborate-hero-actions'>
+                            <button
+                                type='button'
+                                className='collaborate-primary-button'
+                                onClick={() => setIsModalOpen(true)}
+                                disabled={isLoadingCollaborations}
+                            >
+                                Collaborate
+                            </button>
+                            <button
+                                type='button'
+                                className='collaborate-secondary-button'
+                                onClick={() => setActiveTab("active")}
+                            >
+                                View active collaborations
+                            </button>
+                        </div>
 
                         {successMessage ? (
                             <p className='collaborate-success'>{successMessage}</p>

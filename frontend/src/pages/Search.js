@@ -153,6 +153,14 @@ function Search() {
                         </div>
                     )}
 
+                    {!query.trim() && recentSearches.length === 0 && !recentLoading && (
+                        <p className='search-status'>
+                            {isAuthenticated
+                                ? "No recent searches yet."
+                                : "Log in to see recent searches."}
+                        </p>
+                    )}
+
                     <div className='search-results'>
                         {displayList.map((u) => (
                             <div
@@ -171,13 +179,6 @@ function Search() {
                         ))}
                     </div>
 
-                    {!query.trim() && recentSearches.length === 0 && !recentLoading && (
-                        <p className='search-status'>
-                            {isAuthenticated
-                                ? "No recent searches yet."
-                                : "Log in to see recent searches."}
-                        </p>
-                    )}
                 </section>
             </main>
                     </div>
@@ -185,5 +186,4 @@ function Search() {
 }
 
 export default Search
-
 

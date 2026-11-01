@@ -59,7 +59,7 @@ function Signup() {
     }
 
     return (
-        <div className='page'>
+        <div className='page auth-page'>
             <div className='form-container'>
                 <span className='title'>Register</span>
                 <span className='subtitle'>Join our community today and level up your skills!</span>
@@ -131,6 +131,5 @@ function Signup() {
 }
 
 export default Signup
-
 
 

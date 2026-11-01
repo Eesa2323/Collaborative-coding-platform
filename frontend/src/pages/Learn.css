@@ -25,6 +25,7 @@
 }
 
 .learn-hero {
+    margin-top: 12px;
     border-radius: 28px;
     padding: 2rem;
     display: grid;

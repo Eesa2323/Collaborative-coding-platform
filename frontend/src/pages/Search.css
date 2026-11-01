@@ -144,13 +144,40 @@
     text-overflow: ellipsis;
 }
 @media (max-width: 640px) {
+    .page-search {
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        padding-bottom: 0;
+        align-items: stretch;
+    }
+
     .search-main {
-        padding: 100px 14px 40px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 100px 0 0;
     }
 
     .search-section {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
         padding: 20px;
-        border-radius: 16px;
+        border-radius: 0;
+    }
+
+    .page-search .search-results {
+        flex: 1;
+        min-height: 0;
+        max-height: none;
     }
 
     .search-input-group input {
