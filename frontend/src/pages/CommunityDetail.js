@@ -157,8 +157,50 @@ export default function CommunityDetail() {
         return (
             <div className='page-community-detail'>
                 <Navbar />
-                <LoadingSpinner />
-                            </div>
+                <div className='community-detail-container'>
+                    <div className='community-detail-header'>
+                        <button
+                            className='btn-back'
+                            disabled
+                        >
+                            ← Back
+                        </button>
+                    </div>
+                    <div className='community-posts-section'>
+                        <h2>Posts</h2>
+                        <LoadingSpinner />
+                    </div>
+                </div>
+
+                <div className='post-creation-sticky'>
+                    <div className='post-creation-container'>
+                        <h3>Share Something</h3>
+                        <div className='post-input-group'>
+                            <textarea
+                                placeholder="What's on your mind?"
+                                rows='3'
+                                disabled
+                            />
+                        </div>
+                        <div className='post-actions'>
+                            <button
+                                type='button'
+                                className='btn-image-upload'
+                                disabled
+                            >
+                                📷 Add Image
+                            </button>
+                            <button
+                                type='button'
+                                className='btn-post'
+                                disabled
+                            >
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 

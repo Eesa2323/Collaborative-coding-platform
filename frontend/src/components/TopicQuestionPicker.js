@@ -1,4 +1,5 @@
 import React from "react"
+import LoadingSpinner from "./LoadingSpinner"
 
 function TopicQuestionPicker({
     selectedUserName,
@@ -37,7 +38,7 @@ function TopicQuestionPicker({
 
             <div className='collab-modal__question-list'>
                 {isLoading ? (
-                    <p className='collab-modal__empty'>Loading topics and questions...</p>
+                    <LoadingSpinner />
                 ) : errorMessage ? (
                     <p className='collab-modal__empty'>{errorMessage}</p>
                 ) : questions.length > 0 ? (

@@ -59,9 +59,9 @@ for (int i = 0; i < temperatures.Length; i++) {
     }
 }
 
-Console.WriteLine(\$"Average: {average:F1}°F");
+Console.WriteLine($"Average: {average:F1}°F");
 foreach (var anomaly in anomalies) {
-    Console.WriteLine(\$"Sensor {anomaly.sensorId}: {anomaly.reading}°F");
+    Console.WriteLine($"Sensor {anomaly.sensorId}: {anomaly.reading}°F");
 }`,
                     java: `// Real use case: Analyze inventory stock levels
 int[] inventoryLevels = {45, 23, 67, 45, 89, 234, 56};
@@ -159,13 +159,13 @@ foreach (string user in sessionLog) {
 // Generate login report
 Console.WriteLine("User login frequency:");
 foreach (var entry in userLogins) {
-    Console.WriteLine(\$"  {entry.Key}: {entry.Value} logins");
+    Console.WriteLine($"  {entry.Key}: {entry.Value} logins");
 }
 
 // Quick verification: does user exist and how many times?
 string targetUser = "alice";
 if (userLogins.TryGetValue(targetUser, out int count)) {
-    Console.WriteLine(\$"{targetUser} has {count} sessions");
+    Console.WriteLine($"{targetUser} has {count} sessions");
 }`,
                     java: `// Real scenario: Find duplicate products in large order list
 String[] orders = {"book", "pen", "book", "notebook", "pen", "book"};
@@ -859,7 +859,7 @@ pq.Enqueue("Feature", 2);
 
 while (pq.Count > 0) {
     string task = pq.Dequeue();
-    Console.WriteLine(\$"Processing: {task}");
+    Console.WriteLine($"Processing: {task}");
 }`,
                     java: `PriorityQueue<String> tasks = new PriorityQueue<>();
 // Note: Java's PriorityQueue stores by natural order`,
@@ -1102,13 +1102,13 @@ class DataExplorer {
         double stdDev = Math.Sqrt(scores.Average(x => Math.Pow(x - mean, 2)));
         
         Console.WriteLine("Score Statistics:");
-        Console.WriteLine(\$"  Mean: {mean:F1}");
-        Console.WriteLine(\$"  Std Dev: {stdDev:F1}");
-        Console.WriteLine(\$"  Min: {scores.Min()}, Max: {scores.Max()}");
+        Console.WriteLine($"  Mean: {mean:F1}");
+        Console.WriteLine($"  Std Dev: {stdDev:F1}");
+        Console.WriteLine($"  Min: {scores.Min()}, Max: {scores.Max()}");
         
         // Find outliers
         var outliers = scores.Where(s => Math.Abs(s - mean) > 2 * stdDev);
-        Console.WriteLine(\$"  Outliers: {string.Join(", ", outliers)}");
+        Console.WriteLine($"  Outliers: {string.Join(", ", outliers)}");
     }
 }`,
                     java: `import java.util.*;
@@ -1930,7 +1930,7 @@ def register():
     if not data or 'email' not in data:
         return jsonify({"error": "Email required"}), 400
     
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", data['email']):
+    if not re.match(r"[^@]+@[^@]+\\.[^@]+", data['email']):
         return jsonify({"error": "Invalid email"}), 400
     
     if len(data.get('password', '')) < 8:
@@ -1944,7 +1944,7 @@ public ActionResult Register([FromBody] RegisterDto dto) {
     var email = dto.Email?.Trim();
     if (string.IsNullOrEmpty(email)) return BadRequest("Email required");
     
-    if (!Regex.IsMatch(email, @"[^@]+@[^@]+\.[^@]+"))
+    if (!Regex.IsMatch(email, @"[^@]+@[^@]+\\.[^@]+"))
         return BadRequest("Invalid email");
     
     return Ok();
@@ -1964,7 +1964,7 @@ public ResponseEntity<?> register(@RequestBody RegisterDto dto) {
     const {email, password} = req.body;
     
     if (!email) return res.status(400).json({error: "Email required"});
-    if (!/[^@]+@[^@]+\.[^@]+/.test(email)) 
+    if (!/[^@]+@[^@]+\\.[^@]+/.test(email)) 
         return res.status(400).json({error: "Invalid email"});
     if (!password || password.length < 8)
         return res.status(400).json({error: "Password too short"});
@@ -2112,7 +2112,7 @@ print(cursor.fetchall())`,
     
     var reader = queryCmd.ExecuteReader();
     while (reader.Read()) {
-        Console.WriteLine(\$"Order {reader[0]}: \${reader[1]}\");
+        Console.WriteLine($"Order {reader[0]}: \${reader[1]}");
     }
 }`,
                     java: `Connection conn = DriverManager.getConnection(url, user, password);
@@ -2188,7 +2188,7 @@ def get_user(user_id):
     redis_client.setex(cache_key, 3600, json.dumps(user))
     return user`,
                     csharp: `public async Task<User> GetUserAsync(int userId) {
-    string cacheKey = \$"user:{userId}\";
+    string cacheKey = $"user:{userId}";
     
     // Try cache
     var cached = await _cache.GetStringAsync(cacheKey);
@@ -2405,7 +2405,7 @@ class RateLimiter:
     
     public async Task Invoke(HttpContext context) {
         var clientId = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-        var key = \$"rate_limit:{clientId}\";
+        var key = $"rate_limit:{clientId}";
         
         var count = await _cache.GetAsync(key);
         int requestCount = count == null ? 0 : int.Parse(Encoding.UTF8.GetString(count));
@@ -2947,7 +2947,7 @@ class StateMachine {
     public void Transition(GameState newState) {
         if (transitions[currentState].Contains(newState)) {
             currentState = newState;
-            Console.WriteLine(\$"State: {currentState}\");
+            Console.WriteLine($"State: {currentState}");
         }
     }
 }`,

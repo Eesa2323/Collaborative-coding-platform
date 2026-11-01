@@ -26,6 +26,57 @@ body {
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #c4b5fd rgba(49, 46, 129, 0.45);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(49, 46, 129, 0.45);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #ddd6fe;
+  background-clip: padding-box;
+}
+
+/* Light grey scrollbars: community page and collaborate user search */
+html:has(.page-communities),
+.page-communities *,
+.collab-modal__user-list {
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+html:has(.page-communities)::-webkit-scrollbar-track,
+.page-communities *::-webkit-scrollbar-track,
+.collab-modal__user-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+html:has(.page-communities)::-webkit-scrollbar-thumb,
+.page-communities *::-webkit-scrollbar-thumb,
+.collab-modal__user-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  background-clip: padding-box;
+}
+
+html:has(.page-communities)::-webkit-scrollbar-thumb:hover,
+.page-communities *::-webkit-scrollbar-thumb:hover,
+.collab-modal__user-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+  background-clip: padding-box;
 }
 
 img {

@@ -45,7 +45,7 @@ export default function Profile() {
     const [passwordLoading, setPasswordLoading] = useState(false)
     const [isLoggingOut, setIsLoggingOut] = useState(false)
 
-    const completedChallenges = profile?.completedChallenges || []
+    const completedChallenges = useMemo(() => profile?.completedChallenges || [], [profile])
     const totalChallenges = completedChallenges.length
 
     useEffect(() => {
@@ -108,10 +108,6 @@ export default function Profile() {
 
     const isOwnProfile = !userId || userId === user?.id
     const level = profile?.level || 1
-    const uniqueCompletedCount = profile?.completedChallengeCount ?? new Set(
-        completedChallenges.map((challenge) => challenge.id),
-    ).size
-    const nextMilestoneCount = 4 - (uniqueCompletedCount % 4)
     const topTopic = topicStats[0]?.topic || "Not started yet"
 
     const getJoinDate = () => {
@@ -308,8 +304,21 @@ export default function Profile() {
 
     if (loading) {
         return (
-            <div style={{ background: '#6366f1', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <LoadingSpinner />
+            <div
+                style={{ marginTop: 50 }}
+                className='page-profile'
+            >
+                <Navbar />
+                <div
+                    style={{
+                        minHeight: "calc(100vh - 150px)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <LoadingSpinner />
+                </div>
             </div>
         )
     }

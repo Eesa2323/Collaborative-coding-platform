@@ -65,17 +65,6 @@ function Challenges() {
         })
     }
 
-    if (isLoading && challenges.length === 0) {
-        return (
-            <div className='page page-challenges'>
-                <Navbar />
-                <main className='challenges-main'>
-                    <LoadingSpinner />
-                </main>
-            </div>
-        )
-    }
-
     return (
         <div className='page page-challenges'>
             {/* Top navigation */}
@@ -99,6 +88,7 @@ function Challenges() {
                             <span>Challenge type</span>
                             <select
                                 value={challengeType}
+                                disabled={isLoading}
                                 onChange={(event) => setChallengeType(event.target.value)}
                                 aria-label='Select challenge type'
                             >
@@ -113,6 +103,7 @@ function Challenges() {
                             <span>Difficulty</span>
                             <select
                                 value={difficulty}
+                                disabled={isLoading}
                                 onChange={(event) => setDifficulty(event.target.value)}
                                 aria-label='Select challenge difficulty'
                             >

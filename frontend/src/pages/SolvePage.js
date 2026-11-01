@@ -190,6 +190,7 @@ export function SolvePage() {
     const challengeId = normalizeObjectId(challenge?._id)
     const starterSnippets = useMemo(
         () => buildStarterSnippetsForChallenge(challenge),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [challengeId],
     )
 
@@ -284,6 +285,7 @@ export function SolvePage() {
             editor.dispose()
             editorInstanceRef.current = null
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -497,6 +499,7 @@ export function SolvePage() {
 
         // Remember current language for the next switch.
         previousLanguageRef.current = selectedLanguage
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedLanguage, challengeId])
 
     // Get current code directly from the editor so run is always using fresh text.

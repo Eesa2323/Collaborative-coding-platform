@@ -36,6 +36,7 @@ export default function Communities() {
     // Fetch communities on component mount
     useEffect(() => {
         fetchCommunities()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Function to fetch all communities from the API
@@ -161,18 +162,6 @@ export default function Communities() {
         navigate(`/communities/${communityId}`)
     }
 
-    // Show loading spinner while fetching data
-    if (loading) {
-        return (
-            <div className='page-communities'>
-                <Navbar />
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '120px' }}>
-                    <LoadingSpinner />
-                </div>
-            </div>
-        )
-    }
-
     // Main render
     return (
         <div className='page-communities'>
@@ -192,19 +181,25 @@ export default function Communities() {
                         <button
                             className='action-btn action-btn-create'
                             onClick={() => setShowCreateModal(true)}
+                            disabled={loading}
                         >
                             + Create Community
                         </button>
                         <button
                             className='action-btn action-btn-search'
                             onClick={() => setShowSearchModal(true)}
+                            disabled={loading}
                         >
                             🔍 Search Communities
                         </button>
                     </div>
                 )}
 
-                {communities.length === 0 ? (
+                {loading ? (
+                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+                        <LoadingSpinner />
+                    </div>
+                ) : communities.length === 0 ? (
                     <div className='no-communities-message'>
                         <h2>No communities yet</h2>
                         <p>Be the first to create one and start connecting!</p>

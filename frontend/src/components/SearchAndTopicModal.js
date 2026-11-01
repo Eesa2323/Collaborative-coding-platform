@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Modal from "./Modal"
+import LoadingSpinner from "./LoadingSpinner"
 import TopicQuestionPicker from "./TopicQuestionPicker"
 import "./SearchAndTopicModal.css"
 
@@ -196,7 +197,7 @@ function SearchAndTopicModal({
                                     Find users by typing a name or email.
                                 </p>
                             ) : isSearchingUsers ? (
-                                <p className='collab-modal__empty'>Searching users...</p>
+                                <LoadingSpinner />
                             ) : searchErrorMessage ? (
                                 <p className='collab-modal__empty'>{searchErrorMessage}</p>
                             ) : users.length > 0 ? (

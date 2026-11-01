@@ -109,13 +109,13 @@
 }
 
 .collaborate-success {
-    margin: 12px 0 0;
+    margin: 24px 0 0 !important;
     color: #166534;
     font-weight: 600;
 }
 
 .collaborate-error {
-    margin: 12px 0 0;
+    margin: 24px 0 0 !important;
     color: #b91c1c;
     font-weight: 600;
 }

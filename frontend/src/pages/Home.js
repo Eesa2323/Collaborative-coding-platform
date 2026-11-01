@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import Navbar from "../components/Navbar"
+import LoadingSpinner from "../components/LoadingSpinner"
 import { useAuth } from "../context/AuthContext"
 import "./Home.css"
 
@@ -191,9 +192,7 @@ function Home() {
                         <h2>Leaderboard</h2>
                     </div>
 
-                    {leaderboardLoading && (
-                        <p className='leaderboard-status'>Loading leaderboard...</p>
-                    )}
+                    {leaderboardLoading && <LoadingSpinner />}
 
                     {!leaderboardLoading && leaderboardError && (
                         <p className='leaderboard-status'>{leaderboardError}</p>

@@ -61,7 +61,7 @@
     gap: 8px;
     flex: 1 1 auto;
     min-height: 120px;
-    max-height: none;
+    max-height: 450px;
     overflow: auto;
     padding-right: 2px;
 }

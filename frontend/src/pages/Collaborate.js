@@ -78,11 +78,10 @@ function Collaborate() {
                     questionId,
                 })
 
-                const collaborationId = response.data?.collaboration?.id || ""
+                const partnerName = response.data?.collaboration?.collaborator?.name
                 setSuccessMessage(
-                    collaborationId
-                        ? `Collaboration invite sent. Topic: ${topic}. Invite id: ${collaborationId}`
-                        : `Collaboration invite sent. Topic: ${topic}.`,
+                    `Invitation sent${partnerName ? ` to ${partnerName}` : ""}. Topic: ${topic}. ` +
+                        "The collaboration will begin once the recipient accepts your invitation.",
                 )
 
                 loadActiveCollaborations()
@@ -108,17 +107,6 @@ function Collaborate() {
                 collaboration,
             },
         })
-    }
-
-    if (isLoadingCollaborations && collaborations.length === 0) {
-        return (
-            <div className='page page-collaborate'>
-                <Navbar />
-                <main className='collaborate-main'>
-                    <LoadingSpinner />
-                </main>
-            </div>
-        )
     }
 
     const formatDateTime = (value) => {
@@ -163,11 +151,11 @@ function Collaborate() {
                 {activeTab === "active" ? (
                     <section className='collaborate-active-card'>
                         <div className='collaborate-active-header'>
-                            <span className='collaborate-eyebrow'>Accepted sessions</span>
+                            <span className='collaborate-eyebrow'>Active sessions</span>
                             <h1>Active Collaborations</h1>
                             <p>
-                                Only accepted collaborations are shown here. Click one to open its
-                                challenge in the solve page.
+                                Accepted collaborations with your partners appear here. Select one
+                                to open the challenge and continue working together.
                             </p>
                         </div>
 
@@ -235,17 +223,18 @@ function Collaborate() {
 
                 {activeTab === "start" ? (
                     <section className='collaborate-hero'>
-                        <span className='collaborate-eyebrow'>Team up and grow</span>
-                        <h1>Collaborate with other learners on real coding topics.</h1>
+                        <span className='collaborate-eyebrow'>Peer collaboration</span>
+                        <h1>Solve coding challenges together with a partner.</h1>
                         <p>
-                            Find a partner, pick a focused question, and move faster with shared
-                            feedback and stronger solutions.
+                            Invite another user to work with you on a selected question. Once
+                            they accept, you can collaborate in a shared session.
                         </p>
 
                         <button
                             type='button'
                             className='collaborate-primary-button'
                             onClick={() => setIsModalOpen(true)}
+                            disabled={isLoadingCollaborations}
                         >
                             Collaborate
                         </button>
