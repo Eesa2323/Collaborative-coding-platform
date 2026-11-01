@@ -148,8 +148,7 @@ function Home() {
                         <article className='feature-card'>
                             <h3>Live collaboration</h3>
                             <p>
-                                Invite others into a shared coding session with real-time Socket.IO
-                                sync.
+                                Partner up for shared coding sessions with real-time Socket.IO sync.
                             </p>
                             <Link
                                 to={isAuthenticated ? "/collaborate" : "/login"}

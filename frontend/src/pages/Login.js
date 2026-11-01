@@ -35,9 +35,45 @@ function Login() {
 
     return (
         <div className='page'>
-            <div style={{ background: '#000000', border: '2px solid #000000', padding: '20px 16px', borderRadius: '8px', margin: '16px auto', maxWidth: '400px', textAlign: 'center', fontWeight: 600, color: '#ef4444', fontSize: '1.1rem' }}>
-                For testing purposes, when logging in use: email: "brad@gmail.com" password: "Password12345!" OR create an actual account if preferred. When testing collaboration feature, use "Bob" or any other user as target and open new window and login as targeted collaboration user. Credentials: email: "bob@gmail.com", password: "Password12345!"
-            </div>
+            <aside className='login-demo-panel' aria-labelledby='login-demo-title'>
+                <h2 id='login-demo-title'>Testing the app</h2>
+                <p className='login-demo-intro'>
+                    For testing purposes, use either set of example credentials below to sign in, or create your own account.
+                </p>
+
+                <div className='login-demo-account'>
+                    <h3>Example credentials 1</h3>
+                    <dl>
+                        <div>
+                            <dt>Email</dt>
+                            <dd>brad@gmail.com</dd>
+                        </div>
+                        <div>
+                            <dt>Password</dt>
+                            <dd>Password12345!</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div className='login-demo-account'>
+                    <h3>Example credentials 2</h3>
+                    <dl>
+                        <div>
+                            <dt>Email</dt>
+                            <dd>bob@gmail.com</dd>
+                        </div>
+                        <div>
+                            <dt>Password</dt>
+                            <dd>Password12345!</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <p className='login-demo-collaboration'>
+                    To test collaboration, choose “Bob” or another user as the target, open a new window, and log in
+                    there as that target user.
+                </p>
+            </aside>
             <div className='form-container'>
                 <span className='title'>Log In</span>
                 <span className='subtitle'>Enter your details to continue your journey!</span>
@@ -85,6 +121,3 @@ function Login() {
 }
 
 export default Login
-
-
-
